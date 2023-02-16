@@ -4,7 +4,7 @@
         <p class="text-base mb-4 text-gray-300">
             👤Account Info 🔑Change Password <br>🏃🏼‍♂️Logout
         </p>
-        <Link href="#" as="button" class="btn-b">Visit</Link>
+        <Link :href="route('dashboard')" as="button" class="btn-b">Visit</Link>
     </Card>
 </template>
 

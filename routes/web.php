@@ -19,6 +19,10 @@ Route::get('/', function () {
     return inertia('Home');
 })->name('home');
 
+Route::get('/dashboard', function () {
+    return inertia('Dashboard')->with(['email' => auth()->user()->email]);
+})->name('dashboard')->middleware('auth');
+
 
 // Auth
 Route::name('login')->middleware('guest')

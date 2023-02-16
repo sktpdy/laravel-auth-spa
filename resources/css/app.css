@@ -21,3 +21,11 @@
 .warn-sm {
     @apply text-red-500 text-sm mt-0.5
 }
+
+.heading-b {
+    @apply text-xl font-medium text-blue-500
+}
+
+.heading-g {
+    @apply text-xl font-medium text-green-400
+}
