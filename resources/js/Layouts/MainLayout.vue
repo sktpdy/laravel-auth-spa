@@ -4,7 +4,8 @@
             <div class="flex items-center justify-between p-4 pl-8 pr-8 bg-gray-800 rounded-full">
                 <Link :href="route('home')" class="text-3xl font-extrabold hover-text-g">&lt;/&gt;</Link>
                 <span class="font-medium text-lg hover-text-g">
-                    <Link :href="route('login')">Login/Usr</Link>
+                    <Link v-if="user" href="#">{{ user.name }}</Link>
+                    <Link v-else :href="route('login')">LOGIN</Link>
                 </span>
             </div>
         </div>
@@ -15,5 +16,10 @@
 </template>
 
 <script setup>
-import { Link } from '@inertiajs/vue3'
+import { Link, usePage } from '@inertiajs/vue3'
+import {computed} from "vue";
+
+const user = computed(
+    () => usePage().props.user
+)
 </script>
