@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Events\Registered;
 
 class UserController extends Controller
 {
@@ -20,8 +21,9 @@ class UserController extends Controller
             'password' => 'required|min:8|confirmed',
         ]));
         Auth::login($user);
+        event(new Registered($user));
 
         return redirect()->route('home')
-            ->with('message', 'Account created🎉');
+            ->with('message', 'Account created🎉 Check your email for the verification link!');
     }
 }

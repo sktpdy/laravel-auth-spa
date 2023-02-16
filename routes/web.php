@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VerifyEmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return inertia('Dashboard')->with(['email' => auth()->user()->email]);
-})->name('dashboard')->middleware('auth');
+})->name('dashboard')->middleware(['auth', 'verified']);
 
 
 // Auth
@@ -40,4 +41,16 @@ Route::name('signup.')->middleware('guest')
     ->group(function () {
         Route::get('signup', [UserController::class, 'create'])->name('create');
         Route::post('signup', [UserController::class, 'store'])->name('store');
+    });
+
+
+// VerifyEmail
+Route::name('verification.')->middleware('auth')
+    ->group(function () {
+        Route::get('/email/verify', [VerifyEmailController::class, 'notice'])
+            ->name('notice');
+        Route::post('/email/verification-notification', [VerifyEmailController::class, 'send'])
+            ->name('send')->middleware('throttle:2,1');
+        Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, 'verify'])
+            ->name('verify')->middleware('signed');
     });
