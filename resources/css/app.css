@@ -9,3 +9,15 @@
 .hover-text-g{
     @apply hover:text-green-500 transition duration-200 ease-in-out
 }
+
+.label-d {
+    @apply block text-gray-300 text-sm font-bold mb-2
+}
+
+.input-d {
+    @apply shadow bg-slate-600 rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-blue-500 focus:outline-none
+}
+
+.warn-sm {
+    @apply text-red-500 text-sm mt-0.5
+}

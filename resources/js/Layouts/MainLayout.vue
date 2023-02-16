@@ -4,7 +4,7 @@
             <div class="flex items-center justify-between p-4 pl-8 pr-8 bg-gray-800 rounded-full">
                 <Link :href="route('home')" class="text-3xl font-extrabold hover-text-g">&lt;/&gt;</Link>
                 <span class="font-medium text-lg hover-text-g">
-                    <Link href="#">Login/Usr</Link>
+                    <Link :href="route('login')">Login/Usr</Link>
                 </span>
             </div>
         </div>

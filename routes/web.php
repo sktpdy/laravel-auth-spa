@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,10 @@ Route::get('/', function () {
     return inertia('Home');
 })->name('home');
 
+
+// Auth
+Route::name('login')->middleware('guest')
+    ->group(function () {
+        Route::get('login', [AuthController::class, 'create']);
+        Route::post('login', [AuthController::class, 'store'])->name('.store');
+    });
