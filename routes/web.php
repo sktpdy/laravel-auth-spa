@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VerifyEmailController;
+use App\Http\Controllers\ResetPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,4 +54,18 @@ Route::name('verification.')->middleware('auth')
             ->name('send')->middleware('throttle:2,1');
         Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, 'verify'])
             ->name('verify')->middleware('signed');
+    });
+
+
+// ResetPassword
+Route::name('password.')
+    ->group(function () {
+        Route::get('/forgot-password', [ResetPasswordController::class, 'request'])
+            ->name('request')->middleware('guest');
+        Route::post('/forgot-password', [ResetPasswordController::class, 'send'])
+            ->name('send');
+        Route::get('/reset-password/{token}/{email}', [ResetPasswordController::class, 'reset'])
+            ->name('reset');
+        Route::post('/reset-password', [ResetPasswordController::class, 'update'])
+            ->name('update');
     });

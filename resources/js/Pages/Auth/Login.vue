@@ -12,7 +12,7 @@
             <div class="flex items-center justify-between pr-1">
                 <button class="btn-b">Login</button>
                 <p class="text-base font-medium">
-                    <Link href="#" class="text-gray-400 hover-text-g">Forgot Password?</Link>
+                    <Link :href="route('password.request')" class="text-gray-400 hover-text-g">Forgot Password?</Link>
                 </p>
             </div>
         </form>
