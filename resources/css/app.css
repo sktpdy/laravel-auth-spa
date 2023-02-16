@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.btn-b {
+    @apply px-6 py-2.5 bg-blue-600 font-medium rounded shadow-md hover:bg-green-600 hover:shadow-green-500/30 hover:shadow-lg transition duration-200 ease-in-out
+}
+
+.hover-text-g{
+    @apply hover:text-green-500 transition duration-200 ease-in-out
+}
