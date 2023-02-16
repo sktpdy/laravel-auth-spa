@@ -10,6 +10,9 @@
             </div>
         </div>
     </nav>
+    <div v-if="flashMessage" class="flex w-full w items-center justify-center mb-4 p-2 border-b border-t border-blue-600 shadow-sm bg-blue-900">
+        {{ flashMessage }}
+    </div>
     <main class="container mx-auto w-full">
         <slot></slot>
     </main>
@@ -21,5 +24,9 @@ import {computed} from "vue";
 
 const user = computed(
     () => usePage().props.user
+)
+
+const flashMessage = computed(
+    () => usePage().props.flash.message,
 )
 </script>
