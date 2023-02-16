@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,11 @@ Route::name('login')->middleware('guest')
 
 Route::delete('logout', [AuthController::class, 'destroy'])->name('logout')
     ->middleware('auth');
+
+
+// User
+Route::name('signup.')->middleware('guest')
+    ->group(function () {
+        Route::get('signup', [UserController::class, 'create'])->name('create');
+        Route::post('signup', [UserController::class, 'store'])->name('store');
+    });

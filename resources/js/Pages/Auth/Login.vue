@@ -18,7 +18,7 @@
         </form>
     </Card>
     <p class="text-center hover-text-g text-sm font-bold">
-        <Link href="#">
+        <Link :href="route('signup.create')">
             Don't have an account?
         </Link>
     </p>
