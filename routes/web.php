@@ -68,4 +68,6 @@ Route::name('password.')
             ->name('reset');
         Route::post('/reset-password', [ResetPasswordController::class, 'update'])
             ->name('update');
+        Route::post('/change-password', [ResetPasswordController::class, 'send'])
+            ->name('change.send')->middleware('auth');
     });

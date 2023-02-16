@@ -6,7 +6,9 @@
         </p>
         <div class="text-gray-400 flex flex-col gap-2">
             <p><b>Email:</b> {{ email }}</p>
-            <p class="hover-text-g text-gray-400 font-bold">Change Password 🔑</p>
+            <form @submit.prevent="changePassword">
+                <button type="submit" class="text-gray-400 font-bold hover-text-g">Change Password 🔑</button>
+            </form>
         </div>
         <div class="flex justify-center mt-4">
             <Link :href="route('logout')" method="DELETE" as="button" class="btn-b">Logout</Link>
@@ -15,7 +17,7 @@
 </template>
 
 <script setup>
-import { Link, usePage } from "@inertiajs/vue3";
+import { Link, usePage, useForm } from "@inertiajs/vue3";
 import { computed } from "vue";
 import Card from "@/Components/Card.vue";
 
@@ -26,5 +28,10 @@ const user = computed(
 const email = computed(
     () => usePage().props.email
 )
+
+const form = useForm({
+    email: email,
+})
+const changePassword = () => form.post(route('password.change.send'))
 </script>
 

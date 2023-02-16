@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class ResetPasswordController extends Controller
 {
@@ -53,6 +54,10 @@ class ResetPasswordController extends Controller
                 event(new PasswordReset($user));
             }
         );
+
+        if(Auth::check()) {
+            app('App\Http\Controllers\AuthController')->destroy($request);
+        }
 
         return $status === Password::PASSWORD_RESET
             ? redirect()->route('login')->with('message', 'Password Reset Successful🎉')
